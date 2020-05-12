@@ -34,8 +34,23 @@ class MatchAppViewController: UIViewController, UICollectionViewDataSource, UICo
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CardCell", for: indexPath) as! CardCollectionViewCell
         
+        let card = cardsArray[indexPath.row]
+        
+        cell.configureCell(card: card)
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let cell = collectionView.cellForItem(at: indexPath) as? CardCollectionViewCell
+        
+        if cell?.card?.isFlipped == false {
+            cell?.flipUp()
+        } else {
+            cell?.flipDown()
+        }
+        
     }
     
 }
